@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import './App.css';
+import { GameContext } from './hooks/gamecontext';
 
 function App() {
-  const [cookies, setCookies] = useState(0);
+  const { cookies, setCookies } = useContext(GameContext);
 
   const handleCookieClick = () => {
-    setCookies(prev => prev + 1);
+    setCookies(cookies + 1);
   };
 
   return (
