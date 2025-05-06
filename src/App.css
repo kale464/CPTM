@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+.cookie-button {
+  font-size: 4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.cookie-button:active {
+  transform: scale(0.95);
+}
+
+.upgrades {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
