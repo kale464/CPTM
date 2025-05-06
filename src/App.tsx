@@ -26,8 +26,11 @@ function App() {
                 </button>
                 <p>Avis d'abscences: {cookies}</p>
               </div>
-              <h2>Améliorations</h2>
-              <p>No upgrades yet. Stay tuned!</p>
+
+              <div className="upgrades-panel">
+                <h2>Améliorations</h2>
+                <p>No upgrades yet. Stay tuned!</p>
+              </div>
             </div>
 
             <div className="structures-panel">
