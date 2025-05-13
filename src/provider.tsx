@@ -30,7 +30,8 @@ export default function GameProvider({ children }: GameProviderProps ) {
           cookiesPerClick,
           autoCookies,
           click,
-          upgrades
+          upgrades,
+          setCookies
         }}
       >
         {children}

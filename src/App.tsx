@@ -1,13 +1,10 @@
 import { useContext } from 'react';
 import './App.css';
-import { GameContext } from './hooks/gamecontext';
+import { GameContext, GameContextType } from './hooks/gamecontext';
+import Upgrade from './upgrade';
 
 function App() {
-  const { cookies, setCookies } = useContext(GameContext);
-
-  const handleCookieClick = () => {
-    setCookies(cookies + 1);
-  };
+  const { cookies, autoCookies, click, cookiesPerClick, setAutoCookies, setCookiesPerClick, upgrades } = useContext(GameContext) as GameContextType;
 
   return (
     <div className="app-container">
@@ -22,15 +19,19 @@ function App() {
 
             <div className="center-area">
               <div className="card">
-                <button className="cookie-button" onClick={handleCookieClick} onKeyDown={(e) => e.preventDefault()}>
+                <button className="cookie-button" onClick={click} onKeyDown={(e) => e.preventDefault()}>
                   🍪
                 </button>
-                <p>Avis d'abscences: {cookies}</p>
+                <p>Avis d'abscences: {cookies.toFixed(1)}</p>
+                <p>Par seconde : {autoCookies.toFixed(1)}</p>
               </div>
 
               <div className="upgrades-panel">
                 <h2>Améliorations</h2>
-                <p>No upgrades yet. Stay tuned!</p>
+
+                {
+                  upgrades.map((value, index) => <Upgrade upgrade={value} key={index}></Upgrade>)
+                }
               </div>
             </div>
 

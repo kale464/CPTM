@@ -1,22 +1,16 @@
 
 import { Upgrade } from "../types"
 
+function createAutoClicker(name: string, description: string, cost: number, cps: number) {
+    return new Upgrade(
+        name,
+        description,
+        "autoclicker",
+        cost,
+        (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) }
+    );
+}
+
 export const upgrades: Upgrade[]  = [
-    new Upgrade(
-        "Auto-Clicker",
-        "Rajoute 1 cps",
-        "upgradeable",
-        100,
-        () => 100 * Math.pow(1.15, (this as any).level),
-        (setAutoCookies: (current: any) => void) => setAutoCookies((current: any) => current + 1 * (this as any).level)
-    ),
-    
-    new Upgrade(
-        "Auto-Clicker 2",
-        "Rajoute 2 cps",
-        "upgradeable",
-        200,
-        () => 100 * Math.pow(1.15, (this as any).level),
-        (setAutoCookies: (current: any) => void) => setAutoCookies((current: any) => current + 5 * (this as any).level)
-    ),
+    createAutoClicker("Berceuse", "Roduit donne sa théorie", 15, 0.1),
 ]

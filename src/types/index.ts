@@ -1,3 +1,4 @@
+import { GameContextType } from "../hooks/gamecontext";
 
 export interface GameState {
     cookies: number;
@@ -6,7 +7,8 @@ export interface GameState {
     upgrades: Upgrade[]
 }
 
-type UpgradeType = "upgradeable"|"unique"
+type UpgradeType = "autoclicker"|"upgrade"
+type UpgradeEffect = (upgrade: Upgrade, context: GameContextType) => void; 
 
 export class Upgrade {
     private name: string;
@@ -14,35 +16,38 @@ export class Upgrade {
     private type: UpgradeType;
     private cost: number;
     private level: number = 0;
+    private discovered: boolean = false;
 
-    private get_cost_lambda: () => number;
-    private get_effect_lambda: (state: any) => any
+    private effect: UpgradeEffect
 
-    constructor(name: string, description: string, type: UpgradeType, cost: number, get_cost: () => number, effect: (state: any) => any) {
+    constructor(name: string, description: string, type: UpgradeType, cost: number, effect: UpgradeEffect) {
       this.name = name;
       this.description = description;
       this.type = type;
       this.cost = cost;
-      this.get_cost_lambda = get_cost;
-      this.get_effect_lambda = effect;
+      this.effect = effect;
     }
 
-    private getName() { return this.name; }
-    private getDescription() { return this.description; }
-    private getType() { return this.type; }
-    private getLevel() { return this.level; }
+    public isDiscovered() { return this.discovered }
+    public getName() { return this.name; }
+    public getDescription() { return this.description; }
+    public getType() { return this.type; }
+    public getLevel() { return this.level; }
+    public getCost() { return this.cost * Math.pow(1.15, this.level); }
 
 
-    public getCost() {
-      return this.get_cost_lambda.bind(this);
+    public discover() {
+      this.discovered = true;
     }
 
-    public getEffect() {
-      return this.get_effect_lambda.bind(this);
+    public applyEffect(context: GameContextType) {
+      return this.effect(this, context);
     }
 
-    public buy(setCookies: (current: any) => void) {
-      setCookies((current: any) => current - this.getCost()());
+    public buy(setCookies: (current: any) => void, context: GameContextType) {
+      const new_cost = this.getCost();
+      setCookies((current: any) => current - new_cost);
       this.level++;
+      this.applyEffect(context)
     }
 }
