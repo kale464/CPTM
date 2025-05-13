@@ -1,10 +1,10 @@
 import { createContext } from "react";
-import { GameState, UpgradeData } from "../types";
+import { GameState, Upgrade } from "../types";
 
 interface GameContextType extends GameState {
     click: () => void;
-    buyUpgrade: (upgrade: UpgradeData) => void;
-    upgradeLevels: Record<string, number>; // id -> level
+    setAutoCookies: (current: any) => void;
+    setCookiesPerClick: (current: any) => void;
 }
 
-export const GameContext = createContext<GameContextType>({ cookies: 0, cookiesPerClick: 1, ownedUpgrades: string[] });
+export const GameContext = createContext<GameContextType|null>(null);

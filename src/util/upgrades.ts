@@ -1,16 +1,22 @@
 
-import type { UpgradeData } from "../types"
+import { Upgrade } from "../types"
 
-export const upgrades: UpgradeData[]  = [
-    {
-        id: 'autoclicker',
-        name: 'Auto Clicker',
-        description: 'Ajoute 1 cookie par seconde',
-        type: 'repeatable',
-        baseCost: 100,
-        getCost: (level) => 100 * Math.pow(1.15, level), // prix augmente de 15% à chaque achat
-        getEffect: (level, state) => ({
-        autoCookies: state.autoCookies + 0.1
-        })
-    }
+export const upgrades: Upgrade[]  = [
+    new Upgrade(
+        "Auto-Clicker",
+        "Rajoute 1 cps",
+        "upgradeable",
+        100,
+        () => 100 * Math.pow(1.15, (this as any).level),
+        (setAutoCookies: (current: any) => void) => setAutoCookies((current: any) => current + 1 * (this as any).level)
+    ),
+    
+    new Upgrade(
+        "Auto-Clicker 2",
+        "Rajoute 2 cps",
+        "upgradeable",
+        200,
+        () => 100 * Math.pow(1.15, (this as any).level),
+        (setAutoCookies: (current: any) => void) => setAutoCookies((current: any) => current + 5 * (this as any).level)
+    ),
 ]
