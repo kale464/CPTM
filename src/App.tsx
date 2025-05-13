@@ -21,7 +21,7 @@ function App() {
 
             <div className="center-area">
               <div className="card">
-                <button className="cookie-button" onClick={handleCookieClick}>
+                <button className="cookie-button" onClick={handleCookieClick} onKeyDown={(e) => e.preventDefault()}>
                   🍪
                 </button>
                 <p>Avis d'abscences: {cookies}</p>
