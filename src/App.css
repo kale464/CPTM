@@ -149,12 +149,12 @@ button:focus-visible {
   padding: 1rem;
   overflow-y: auto;
   border-radius: 10px;
-  text-align: left;
+  text-align: center;
   flex-shrink: 0;
 }
 
 .main-section .structures-panel:last-child {
-  background-color: #dddde0;
+  background-color: #eeeeee;
 }
 
 .structures-list p {
@@ -237,5 +237,5 @@ button:focus-visible {
   border-radius: 10px;
   width: 100%;
   max-width: 400px;
-  text-align: left;
+  text-align: center;
 }
