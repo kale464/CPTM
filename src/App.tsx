@@ -29,15 +29,15 @@ function App() {
               <div className="upgrades-panel">
                 <h2>Améliorations</h2>
 
-                {
-                  upgrades.map((value, index) => <Upgrade upgrade={value} key={index}></Upgrade>)
-                }
+                
               </div>
             </div>
 
             <div className="structures-panel">
               <h2>Structures</h2>
-              <p>Pas de structures</p>
+                {
+                  upgrades.map((value, index) => <Upgrade upgrade={value} key={index}></Upgrade>)
+                }
             </div>
           </div>
         </div>
