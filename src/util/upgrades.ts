@@ -41,7 +41,14 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
 export const upgrades: Upgrade[]  = [
     createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
     createBerceuseDuplicator("Somnifère", "La théorie est encore plus chiante et compliquée", "Rends les Berceuses 2x plus efficaces", 1),
-    createAutoClicker("Berceuse", "Roduit donne sa théorie, abscence mentale des élèves", "Rajoute 0.1 absences par seconde", 15, 0.1),
+    new Upgrade(
+        "Berceuse",
+        "Roduit donne sa théorie, abscence mentale des élèves",
+        "autoclicker",
+        1,
+        (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[1].berceuseCps) },
+        "Rajoute 0.1 absences par seconde",
+    ),
     createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", "Rajoute 1 absences par seconde", 100, 1),
     createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", "Rajoute 8 absences par seconde", 1100, 8),
     createAutoClicker("Convocation", "Rausis te convoque mais te rajoutes des abscences", "Rajoute 47 absences par seconde", 12000, 47),
