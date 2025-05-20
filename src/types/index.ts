@@ -25,6 +25,7 @@ export class Upgrade {
     private cost: number;
     private level: number = 0;
     private discovered: boolean = false;
+    public berceuseCps = 0.1;
 
     private effect: UpgradeEffect
 
@@ -48,7 +49,6 @@ export class Upgrade {
     setLevel(level: number) {
         this.level = level;
     }
-
 
     public discover() {
       this.discovered = true;

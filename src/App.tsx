@@ -31,7 +31,7 @@ export default function App() {
             <div className="center-area">
               <div className="card">
                 <button className="cookie-button" onClick={context.click} onKeyDown={(e) => e.preventDefault()}>
-                  🍪
+                  <img src="/conge.png" />
                 </button>
                 <p>Avis d'abscences: {Math.trunc(context.cookies)}</p>
                 <p>Par seconde : {context.autoCookies.toFixed(1)}</p>
