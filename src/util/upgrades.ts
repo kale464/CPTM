@@ -1,6 +1,7 @@
 
 import { Upgrade } from "../types"
 
+
 function createAutoClicker(name: string, description: string, effectDescription: string, cost: number, cps: number) {
     return new Upgrade(
         name,
@@ -8,7 +9,7 @@ function createAutoClicker(name: string, description: string, effectDescription:
         "autoclicker",
         cost,
         (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) },
-        effectDescription
+        effectDescription,
     );
 } 
 
@@ -23,8 +24,23 @@ function createClickDuplicator(name: string, description: string, effectDescript
     );
 }
 
+function createBerceuseDuplicator(name: string, description: string, effectDescription: string, cost: number) {
+    return new Upgrade(
+        name,
+        description,
+        "upgrade",
+        cost,
+        (upgrade, context) => { 
+            context.setAutoCookies((current: number) => upgrade.berceuseCps * upgrades[2].getLevel())
+            upgrade.berceuseCps *= 2;
+        },
+        effectDescription
+    );
+}
+
 export const upgrades: Upgrade[]  = [
     createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
+    createBerceuseDuplicator("Somnifère", "La théorie est encore plus chiante et compliquée", "Rends les Berceuses 2x plus efficaces", 1),
     createAutoClicker("Berceuse", "Roduit donne sa théorie, abscence mentale des élèves", "Rajoute 0.1 absences par seconde", 15, 0.1),
     createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", "Rajoute 1 absences par seconde", 100, 1),
     createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", "Rajoute 8 absences par seconde", 1100, 8),
