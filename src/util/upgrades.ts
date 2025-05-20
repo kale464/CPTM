@@ -9,9 +9,20 @@ function createAutoClicker(name: string, description: string, cost: number, cps:
         cost,
         (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) }
     );
+} 
+
+function createClickDuplicator(name: string, description: string, cost: number) {
+    return new Upgrade(
+        name,
+        description,
+        "upgrade",
+        cost,
+        (upgrade, context) => { context.setCookiesPerClick((current: number) => current * 2)}
+    );
 }
 
 export const upgrades: Upgrade[]  = [
+    createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", 100),
     createAutoClicker("Berceuse", "Roduit donne sa théorie, abscence mentale des élèves", 15, 0.1),
     createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", 100, 1),
     createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", 1100, 8),
