@@ -256,7 +256,6 @@ button:focus-visible {
   border-radius: 6px;
   padding: 5px 0;
   
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
   top: -5px;
@@ -265,4 +264,12 @@ button:focus-visible {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.cookie-button img {
+  width: 150px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
 }
