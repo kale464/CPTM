@@ -17,8 +17,8 @@ export class Upgrade {
     private type: UpgradeType;
     private cost: number;
     private level: number = 0;
-    private cps?: number;
     private discovered: boolean = false;
+    public berceuseCps = 0.1;
 
     private effect: UpgradeEffect
 
@@ -38,9 +38,6 @@ export class Upgrade {
     public getLevel() { return this.level; }
     public getCost() { return Math.round(this.cost * Math.pow(1.15, this.level)); }
     public getStringEffect() { return this.stringEffect; }
-
-    public getCps() { return this.cps; }
-    public setCps(value: number) { this.cps = value}
 
     public discover() {
       this.discovered = true;
