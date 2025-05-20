@@ -31,6 +31,7 @@ export default function Upgrade({ upgrade }: UpgradeProps) {
         upgrade.isDiscovered() &&
         <>
             <p>Description : {upgrade.getDescription()}</p>
+            <p>Effet : {upgrade.getStringEffect()}</p>
             <p>Niveau : {upgrade.getLevel()}</p>
         </>
       }

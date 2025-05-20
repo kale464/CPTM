@@ -13,16 +13,19 @@ type UpgradeEffect = (upgrade: Upgrade, context: GameContextType) => void;
 export class Upgrade {
     private name: string;
     private description: string;
+    private stringEffect: string;
     private type: UpgradeType;
     private cost: number;
     private level: number = 0;
     private discovered: boolean = false;
+    public berceuseCps = 0.1;
 
     private effect: UpgradeEffect
 
-    constructor(name: string, description: string, type: UpgradeType, cost: number, effect: UpgradeEffect) {
+    constructor(name: string, description: string, type: UpgradeType, cost: number, effect: UpgradeEffect, stringeffect: string) {
       this.name = name;
       this.description = description;
+      this.stringEffect = stringeffect;
       this.type = type;
       this.cost = cost;
       this.effect = effect;
@@ -34,7 +37,7 @@ export class Upgrade {
     public getType() { return this.type; }
     public getLevel() { return this.level; }
     public getCost() { return Math.round(this.cost * Math.pow(1.15, this.level)); }
-
+    public getStringEffect() { return this.stringEffect; }
 
     public discover() {
       this.discovered = true;
