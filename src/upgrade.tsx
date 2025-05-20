@@ -27,14 +27,15 @@ export default function Upgrade({ upgrade }: UpgradeProps) {
     >
       <h4>{upgrade.isDiscovered() ? upgrade.getName() : "???"}</h4>
       <p>Coût : {upgrade.getCost()}</p>
-      {
-        upgrade.isDiscovered() &&
+      {upgrade.isDiscovered() && (
         <>
-            <p>Description : {upgrade.getDescription()}</p>
-            <p>Effet : {upgrade.getStringEffect()}</p>
-            <p>Niveau : {upgrade.getLevel()}</p>
+          <div className="tooltip-container">
+            <p className="tooltip">Description : {upgrade.getDescription()}</p>
+            <p className="tooltip">Effet : {upgrade.getStringEffect()}</p>
+          </div>
+          <p>Niveau : {upgrade.getLevel()}</p>
         </>
-      }
+      )}
     </div>
   );
 }
