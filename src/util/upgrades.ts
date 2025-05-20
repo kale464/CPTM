@@ -45,7 +45,7 @@ export const upgrades: Upgrade[]  = [
         "Berceuse",
         "Roduit donne sa théorie, abscence mentale des élèves",
         "autoclicker",
-        1,
+        15,
         (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[1].berceuseCps) },
         "Rajoute 0.1 absences par seconde",
     ),
