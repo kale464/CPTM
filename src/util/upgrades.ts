@@ -1,38 +1,40 @@
 
 import { Upgrade } from "../types"
 
-function createAutoClicker(name: string, description: string, cost: number, cps: number) {
+function createAutoClicker(name: string, description: string, effectDescription: string, cost: number, cps: number) {
     return new Upgrade(
         name,
         description,
         "autoclicker",
         cost,
-        (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) }
+        (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) },
+        effectDescription
     );
 } 
 
-function createClickDuplicator(name: string, description: string, cost: number) {
+function createClickDuplicator(name: string, description: string, effectDescription: string, cost: number) {
     return new Upgrade(
         name,
         description,
         "upgrade",
         cost,
-        (upgrade, context) => { context.setCookiesPerClick((current: number) => current * 2)}
+        (upgrade, context) => { context.setCookiesPerClick((current: number) => current * 2)},
+        effectDescription
     );
 }
 
 export const upgrades: Upgrade[]  = [
-    createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", 100),
-    createAutoClicker("Berceuse", "Roduit donne sa théorie, abscence mentale des élèves", 15, 0.1),
-    createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", 100, 1),
-    createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", 1100, 8),
-    createAutoClicker("Convocation", "Rausis te convoque mais te rajoutes des abscences", 12000, 47),
-    createAutoClicker("Escadhack", "Les élèves piratent Escada pour se rajouter des abscences", 130000, 260),
-    createAutoClicker("Secrétaire fatiguée", "Les secrétaires oublient d'enregistrer les abscences", 1400000, 1400),
-    createAutoClicker("Retard", "Les élèves arrivent en retard ce qui donne des abscences", 20000000, 7800),
-    createAutoClicker("Salle 404", "Une salle inexistante dans le bâtiment donc les cours n'ont pas lieu", 330000000, 44000),
-    createAutoClicker("Parents complotistes", "Des parents ne laissent pas leurs enfants aller en cours", 5100000000, 260000),
-    createAutoClicker("Contestation", "Tu dénonces l'injustice, ça va uniquement te rajouter des abscences...", 75000000000, 1600000),
-    createAutoClicker("Salles inversées", "Les numéros des salles sont inversés, pagaille général dans les couloirs", 1000000000000, 10000000),
-    createAutoClicker("Discussion", "Tu discutais simplement avec un camarade, des abscences sont le prix à payer", 14000000000000, 65000000)
+    createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
+    createAutoClicker("Berceuse", "Roduit donne sa théorie, abscence mentale des élèves", "Rajoute 0.1 absences par seconde", 15, 0.1),
+    createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", "Rajoute 1 absences par seconde", 100, 1),
+    createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", "Rajoute 8 absences par seconde", 1100, 8),
+    createAutoClicker("Convocation", "Rausis te convoque mais te rajoutes des abscences", "Rajoute 47 absences par seconde", 12000, 47),
+    createAutoClicker("Escadhack", "Les élèves piratent Escada pour se rajouter des abscences", "Rajoute 260 absences par seconde", 130000, 260),
+    createAutoClicker("Secrétaire fatiguée", "Les secrétaires oublient d'enregistrer les abscences", "Rajoute 1'400 absences par seconde", 1400000, 1400),
+    createAutoClicker("Retard", "Les élèves arrivent en retard ce qui donne des abscences", "Rajoute 7'800 absences par seconde", 20000000, 7800),
+    createAutoClicker("Salle 404", "Une salle inexistante dans le bâtiment donc les cours n'ont pas lieu", "Rajoute 44'000 absences par seconde", 330000000, 44000),
+    createAutoClicker("Parents complotistes", "Des parents ne laissent pas leurs enfants aller en cours", "Rajoute 260'000 absences par seconde", 5100000000, 260000),
+    createAutoClicker("Contestation", "Tu dénonces l'injustice, ça va uniquement te rajouter des abscences...", "Rajoute 1'600'000 absences par seconde", 75000000000, 1600000),
+    createAutoClicker("Salles inversées", "Les numéros des salles sont inversés, pagaille général dans les couloirs", "Rajoute 10'000'000 absences par seconde", 1000000000000, 10000000),
+    createAutoClicker("Discussion", "Tu discutais simplement avec un camarade, des abscences sont le prix à payer", "Rajoute 65'000'000 absences par seconde", 14000000000000, 65000000)
 ]
