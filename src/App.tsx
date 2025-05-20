@@ -14,7 +14,7 @@ function App() {
           <div className="main-section">
             <div className="structures-panel">
               <h2>Minijeux</h2>
-              <p>À venir...</p>
+              <p>À venir dans une future mise à jour...</p>
             </div>
 
             <div className="center-area">
