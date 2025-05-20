@@ -10,12 +10,12 @@ export default function App() {
   useEffect(() => {
     const saveInterval = setInterval(() => {
       saveGame(context);
-    }, 10000)
+    }, 1000)
 
     return () => {
       clearInterval(saveInterval);
     }
-  }, [context]);
+  });
 
   return (
     <div className="app-container">
