@@ -4,7 +4,6 @@ import { GameContext } from './hooks/gamecontext.ts'
 import App from './App.tsx'
 import Provider from './provider.tsx'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Runner from './runner.tsx'
 
 
 

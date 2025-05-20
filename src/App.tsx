@@ -3,7 +3,7 @@ import './App.css';
 import { GameContext, GameContextType } from './hooks/gamecontext';
 import Upgrade from './upgrade';
 
-function App() {
+export default function App() {
   const { cookies, autoCookies, click, cookiesPerClick, setAutoCookies, setCookiesPerClick, upgrades } = useContext(GameContext) as GameContextType;
 
   return (
@@ -22,7 +22,7 @@ function App() {
                 <button className="cookie-button" onClick={click} onKeyDown={(e) => e.preventDefault()}>
                   🍪
                 </button>
-                <p>Avis d'abscences: {cookies.toFixed(1)}</p>
+                <p>Avis d'abscences: {Math.trunc(cookies)}</p>
                 <p>Par seconde : {autoCookies.toFixed(1)}</p>
               </div>
 
@@ -49,5 +49,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
