@@ -240,3 +240,11 @@ button:focus-visible {
   max-width: 400px;
   text-align: center;
 }
+
+.cookie-button img {
+  width: 150px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
