@@ -1,10 +1,21 @@
-import { useContext } from 'react';
+import {useContext, useEffect} from 'react';
 import './App.css';
 import { GameContext, GameContextType } from './hooks/gamecontext';
 import Upgrade from './upgrade';
+import saveGame from "./util/save.ts";
 
 export default function App() {
-  const { cookies, autoCookies, click, cookiesPerClick, setAutoCookies, setCookiesPerClick, upgrades } = useContext(GameContext) as GameContextType;
+  const context = useContext(GameContext) as GameContextType;
+
+  useEffect(() => {
+    const saveInterval = setInterval(() => {
+      saveGame(context);
+    }, 10000)
+
+    return () => {
+      clearInterval(saveInterval);
+    }
+  }, [context]);
 
   return (
     <div className="app-container">
@@ -19,17 +30,17 @@ export default function App() {
 
             <div className="center-area">
               <div className="card">
-                <button className="cookie-button" onClick={click} onKeyDown={(e) => e.preventDefault()}>
+                <button className="cookie-button" onClick={context.click} onKeyDown={(e) => e.preventDefault()}>
                   🍪
                 </button>
-                <p>Avis d'abscences: {Math.trunc(cookies)}</p>
-                <p>Par seconde : {autoCookies.toFixed(1)}</p>
+                <p>Avis d'abscences: {Math.trunc(context.cookies)}</p>
+                <p>Par seconde : {context.autoCookies.toFixed(1)}</p>
               </div>
 
               <div className="upgrades-panel">
                 <h2>Améliorations</h2>
                 {
-                  upgrades.map((value, index) => value.getType() === "upgrade" && <Upgrade upgrade={value} key={index}></Upgrade>)
+                  context.upgrades.map((value, index) => value.getType() === "upgrade" && <Upgrade upgrade={value} key={index}></Upgrade>)
                 }
               </div>
             </div>
@@ -37,7 +48,7 @@ export default function App() {
             <div className="structures-panel">
               <h2>Structures</h2>
                 {
-                  upgrades.map((value, index) => value.getType() === "autoclicker" && <Upgrade upgrade={value} key={index}></Upgrade>)
+                  context.upgrades.map((value, index) => value.getType() === "autoclicker" && <Upgrade upgrade={value} key={index}></Upgrade>)
                 }
             </div>
           </div>

@@ -1,5 +1,12 @@
 import { GameContextType } from "../hooks/gamecontext";
 
+export type GameSave = {
+    absences: number;
+    auto: number;
+    perClick: number;
+    upgrades: { "name": string, level: number }[];
+}
+
 export interface GameState {
     cookies: number;
     cookiesPerClick: number;
@@ -37,6 +44,10 @@ export class Upgrade {
     public getLevel() { return this.level; }
     public getCost() { return Math.round(this.cost * Math.pow(1.15, this.level)); }
     public getStringEffect() { return this.stringEffect; }
+
+    setLevel(level: number) {
+        this.level = level;
+    }
 
 
     public discover() {
