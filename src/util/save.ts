@@ -9,7 +9,7 @@ export default function saveGame(context: GameContextType) {
         upgrades: [],
     };
 
-    save.upgrades = context.upgrades.map((value) => ({ name: value.getName(), level: value.getLevel() }));
+    save.upgrades = context.upgrades.map((value) => ({ name: value.getName(), level: value.getLevel(), discovered: value.isDiscovered() }));
 
     localStorage.setItem("cptmsave", JSON.stringify(save));
 }

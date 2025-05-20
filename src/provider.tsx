@@ -25,6 +25,7 @@ export default function GameProvider({ children }: GameProviderProps ) {
 
             for (let i = 0; i < upgrades.length; i++) {
                 upgrades[i].setLevel(save.upgrades[i].level);
+                if (save.upgrades[i].discovered) upgrades[i].discover();
             }
         }
     }, []);

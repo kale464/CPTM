@@ -4,7 +4,7 @@ export type GameSave = {
     absences: number;
     auto: number;
     perClick: number;
-    upgrades: { "name": string, level: number }[];
+    upgrades: { "name": string, level: number, discovered: boolean }[];
 }
 
 export interface GameState {
