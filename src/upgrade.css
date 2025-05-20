@@ -1,0 +1,36 @@
+.upgrade-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .upgrade-card:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.02);
+  }
+  
+  .upgrade-card.disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.6;
+    transform: none;
+    background-color: #ddd;
+  }
+  
+  .upgrade-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .upgrade-card p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
