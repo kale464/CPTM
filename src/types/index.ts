@@ -43,7 +43,12 @@ export class Upgrade {
     public getDescription() { return this.description; }
     public getType() { return this.type; }
     public getLevel() { return this.level; }
-    public getCost() { return Math.round(this.cost * Math.pow(1.15, this.level)); }
+    public getCost() {
+      if (this.getType() === "autoclicker") {
+        return Math.round(this.cost * Math.pow(1.15, this.level));
+      }
+      return Math.round(this.cost * Math.pow(10, this.level));
+    }
     public getStringEffect() { return this.stringEffect; }
 
     setLevel(level: number) {
