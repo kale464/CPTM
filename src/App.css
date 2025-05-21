@@ -234,6 +234,8 @@ button:focus-visible {
   width: 100%;
   max-width: 400px;
   text-align: center;
+  max-height: 350px;
+  overflow-y: auto;
 }
 
 .tooltip {
