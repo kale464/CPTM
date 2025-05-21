@@ -29,6 +29,14 @@ export class Upgrade {
     public breakCps = 1;
     public borettismeCps = 8;
     public convocationCps = 47;
+    public escadhackCps = 260;
+    public secretaireCps = 1400;
+    public retardCps = 7800;
+    public salle404Cps = 44000;
+    public parentsCps = 260000;
+    public contestationCps = 1600000;
+    public salleInverseeCps = 10000000;
+    public discussionCps = 65000000;
 
     private effect: UpgradeEffect
 
