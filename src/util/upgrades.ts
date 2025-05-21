@@ -31,7 +31,7 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
         "upgrade",
         cost,
         (upgrade, context) => { 
-            const berceuse = upgrades[2];
+            const berceuse = upgrades[3];
             if (berceuse.getType() === "autoclicker") {
                 const additionalCps = upgrade.berceuseCps * berceuse.getLevel();
                 context.setAutoCookies((current: number) => current + additionalCps);
@@ -42,9 +42,28 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
     );
 }
 
+function createBreaksDuplicator(name: string, description: string, effectDescription: string, cost: number) {
+    return new Upgrade(
+        name,
+        description,
+        "upgrade",
+        cost,
+        (upgrade, context) => { 
+            const breaks = upgrades[4];
+            if (breaks.getType() === "autoclicker") {
+                const additionalCps = upgrade.breakCps * breaks.getLevel();
+                context.setAutoCookies((current: number) => current + additionalCps);
+                upgrade.breakCps *= 2;
+            }
+        },
+        effectDescription
+    );
+}
+
 export const upgrades: Upgrade[]  = [
     createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
     createBerceuseDuplicator("Somnifère", "La théorie est encore plus ennuyeuse et compliquée", "Rends les Berceuses 2x plus efficaces", 100),
+    createBreaksDuplicator("Copié-collé", "Les codes sont dupliqués sur de nouveaux ordinateurs", "Rends les NO BREAKS 2x plus efficaces", 200),
     new Upgrade(
         "Berceuse",
         "Roduit donne sa théorie, abscence mentale des élèves",
@@ -53,7 +72,14 @@ export const upgrades: Upgrade[]  = [
         (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[1].berceuseCps) },
         "Rajoute 0.1 absences par seconde",
     ),
-    createAutoClicker("NO BREAKS", "Genolet gère sa boucle infinie de génération d'abscences", "Rajoute 1 absences par seconde", 100, 1),
+    new Upgrade(
+        "NO BREAKS",
+        "Genolet gère sa boucle infinie de génération d'abscences",
+        "autoclicker",
+        100,
+        (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[2].breakCps) },
+        "Rajoute 1 absences par seconde"
+    ),
     createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", "Rajoute 8 absences par seconde", 1100, 8),
     createAutoClicker("Convocation", "Rausis te convoque mais te rajoutes des abscences", "Rajoute 47 absences par seconde", 12000, 47),
     createAutoClicker("Escadhack", "Les élèves piratent Escada pour se rajouter des abscences", "Rajoute 260 absences par seconde", 130000, 260),

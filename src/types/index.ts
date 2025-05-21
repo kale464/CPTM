@@ -26,6 +26,7 @@ export class Upgrade {
     private level: number = 0;
     private discovered: boolean = false;
     public berceuseCps = 0.1;
+    public breakCps = 1;
 
     private effect: UpgradeEffect
 
