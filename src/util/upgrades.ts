@@ -31,8 +31,12 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
         "upgrade",
         cost,
         (upgrade, context) => { 
-            context.setAutoCookies((current: number) => upgrade.berceuseCps * upgrades[2].getLevel())
-            upgrade.berceuseCps *= 2;
+            const berceuse = upgrades[2];
+            if (berceuse.getType() === "autoclicker") {
+                const additionalCps = upgrade.berceuseCps * berceuse.getLevel();
+                context.setAutoCookies((current: number) => current + additionalCps);
+                upgrade.berceuseCps *= 2;
+            }
         },
         effectDescription
     );
