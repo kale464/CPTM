@@ -273,3 +273,10 @@ button:focus-visible {
   display: block;
   margin: 0 auto;
 }
+
+.structures-panel,
+.center-area,
+.upgrades-panel {
+  max-width: 100%;
+  box-sizing: border-box;
+}

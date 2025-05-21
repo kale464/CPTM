@@ -30,8 +30,10 @@ export default function Upgrade({ upgrade }: UpgradeProps) {
       {upgrade.isDiscovered() && (
         <>
           <div className="tooltip-container">
-            <p className="tooltip">Description : {upgrade.getDescription()}</p>
-            <p className="tooltip">Effet : {upgrade.getStringEffect()}</p>
+            <p className="tooltip">
+              Description : {upgrade.getDescription()}<br />
+              Effet : {upgrade.getStringEffect()}
+            </p>
           </div>
           <p>Niveau : {upgrade.getLevel()}</p>
         </>
