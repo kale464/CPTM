@@ -53,10 +53,6 @@ export default function App() {
             </div>
           </div>
         </div>
-
-        <p className="read-the-docs">
-          Fait par Pedro Da Gloria Santiago, Leny Bressoud et Kaléa Righini
-        </p>
       </div>
     </div>
   );

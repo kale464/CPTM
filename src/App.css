@@ -194,13 +194,6 @@ button:focus-visible {
   max-width: 400px;
 }
 
-.read-the-docs {
-  color: #888;
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
-  text-align: center;
-}
-
 @media (max-width: 768px) {
   .main-section {
     flex-direction: column;

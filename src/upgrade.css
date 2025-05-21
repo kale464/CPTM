@@ -45,7 +45,7 @@
 .tooltip-container {
   position: absolute;
   top: 50%;
-  left: 45%;
+  left: 25%;
   transform: translate(20px, -50%);
   z-index: 1000;
   opacity: 0;
