@@ -44,7 +44,7 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
 
 export const upgrades: Upgrade[]  = [
     createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
-    createBerceuseDuplicator("Somnifère", "La théorie est encore plus chiante et compliquée", "Rends les Berceuses 2x plus efficaces", 100),
+    createBerceuseDuplicator("Somnifère", "La théorie est encore plus ennuyeuse et compliquée", "Rends les Berceuses 2x plus efficaces", 100),
     new Upgrade(
         "Berceuse",
         "Roduit donne sa théorie, abscence mentale des élèves",
