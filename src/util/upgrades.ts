@@ -8,7 +8,7 @@ function createAutoClicker(name: string, description: string, effectDescription:
         description,
         "autoclicker",
         cost,
-        (upgrade, context) => { context.setAutoCookies((current: number) => current + cps) },
+        (_, context) => { context.setAutoCookies((current: number) => current + cps) },
         effectDescription,
     );
 } 
@@ -19,7 +19,7 @@ function createClickDuplicator(name: string, description: string, effectDescript
         description,
         "upgrade",
         cost,
-        (upgrade, context) => { context.setCookiesPerClick((current: number) => current * 2)},
+        (_, context) => { context.setCookiesPerClick((current: number) => current * 2)},
         effectDescription
     );
 }
@@ -31,7 +31,7 @@ function createBerceuseDuplicator(name: string, description: string, effectDescr
         "upgrade",
         cost,
         (upgrade, context) => { 
-            const berceuse = upgrades[3];
+            const berceuse = upgrades[5];
             if (berceuse.getType() === "autoclicker") {
                 const additionalCps = upgrade.berceuseCps * berceuse.getLevel();
                 context.setAutoCookies((current: number) => current + additionalCps);
@@ -49,7 +49,7 @@ function createBreaksDuplicator(name: string, description: string, effectDescrip
         "upgrade",
         cost,
         (upgrade, context) => { 
-            const breaks = upgrades[4];
+            const breaks = upgrades[6];
             if (breaks.getType() === "autoclicker") {
                 const additionalCps = upgrade.breakCps * breaks.getLevel();
                 context.setAutoCookies((current: number) => current + additionalCps);
@@ -60,16 +60,54 @@ function createBreaksDuplicator(name: string, description: string, effectDescrip
     );
 }
 
+function createBorettismeDuplicator(name: string, description: string, effectDescription: string, cost: number) {
+    return new Upgrade(
+        name,
+        description,
+        "upgrade",
+        cost,
+        (upgrade, context) => { 
+            const borettisme = upgrades[7];
+            if (borettisme.getType() === "autoclicker") {
+                const additionalCps = upgrade.borettismeCps * borettisme.getLevel();
+                context.setAutoCookies((current: number) => current + additionalCps);
+                upgrade.borettismeCps *= 2;
+            }
+        },
+        effectDescription
+    );
+}
+
+function createConvocationDuplicator(name: string, description: string, effectDescription: string, cost: number) {
+    return new Upgrade(
+        name,
+        description,
+        "upgrade",
+        cost,
+        (upgrade, context) => { 
+            const convocation = upgrades[8];
+            if (convocation.getType() === "autoclicker") {
+                const additionalCps = upgrade.convocationCps * convocation.getLevel();
+                context.setAutoCookies((current: number) => current + additionalCps);
+                upgrade.convocationCps *= 2;
+            }
+        },
+        effectDescription
+    );
+}
+
 export const upgrades: Upgrade[]  = [
-    createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 100),
+    createClickDuplicator("Jour de matu", "Les jours de matus, tu prends 2x plus cher.", "Double chaque cliques sur l'abscences", 10),
     createBerceuseDuplicator("Somnifère", "La théorie est encore plus ennuyeuse et compliquée", "Rends les Berceuses 2x plus efficaces", 100),
-    createBreaksDuplicator("Copié-collé", "Les codes sont dupliqués sur de nouveaux ordinateurs", "Rends les NO BREAKS 2x plus efficaces", 200),
+    createBreaksDuplicator("Copié-collé", "Les codes sont dupliqués sur de nouveaux ordinateurs", "Rends les NO BREAKS 2x plus efficaces", 500),
+    createBorettismeDuplicator("Propagande", "Les cultistes font de la propagande pour répandre le Borettisme", "Rends le Borettisme 2x plus efficace", 1500),
+    createConvocationDuplicator("Berserk", "Rausis s'énerve de plus en plus et te donne encore plus d'abscences", "Rends les Convocations 2x plus puissantes", 15000),
     new Upgrade(
         "Berceuse",
         "Roduit donne sa théorie, abscence mentale des élèves",
         "autoclicker",
         15,
-        (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[1].berceuseCps) },
+        (_, context) => { context.setAutoCookies((current: number) => current + upgrades[1].berceuseCps) },
         "Rajoute 0.1 absences par seconde",
     ),
     new Upgrade(
@@ -77,11 +115,25 @@ export const upgrades: Upgrade[]  = [
         "Genolet gère sa boucle infinie de génération d'abscences",
         "autoclicker",
         100,
-        (upgrade, context) => { context.setAutoCookies((current: number) => current + upgrades[2].breakCps) },
+        (_, context) => { context.setAutoCookies((current: number) => current + upgrades[2].breakCps) },
         "Rajoute 1 absences par seconde"
     ),
-    createAutoClicker("Borettisme", "Les cultistes de Boretti prient pour avoir des abscences", "Rajoute 8 absences par seconde", 1100, 8),
-    createAutoClicker("Convocation", "Rausis te convoque mais te rajoutes des abscences", "Rajoute 47 absences par seconde", 12000, 47),
+    new Upgrade(
+        "Borettisme",
+        "Les cultistes de Boretti prient pour avoir des abscences",
+        "autoclicker",
+        1100,
+        (_, context) => { context.setAutoCookies((current: number) => current + upgrades[3].borettismeCps) },
+        "Rajoute 8 absences par seconde"
+    ),
+    new Upgrade(
+        "Convocation",
+        "Rausis te convoque mais te rajoutes des abscences",
+        "autoclicker",
+        12000,
+        (_, context) => { context.setAutoCookies((current: number) => current + upgrades[4].convocationCps) },
+        "Rajoute 47 absences par seconde"
+    ),
     createAutoClicker("Escadhack", "Les élèves piratent Escada pour se rajouter des abscences", "Rajoute 260 absences par seconde", 130000, 260),
     createAutoClicker("Secrétaire fatiguée", "Les secrétaires oublient d'enregistrer les abscences", "Rajoute 1'400 absences par seconde", 1400000, 1400),
     createAutoClicker("Retard", "Les élèves arrivent en retard ce qui donne des abscences", "Rajoute 7'800 absences par seconde", 20000000, 7800),

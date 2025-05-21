@@ -27,6 +27,8 @@ export class Upgrade {
     private discovered: boolean = false;
     public berceuseCps = 0.1;
     public breakCps = 1;
+    public borettismeCps = 8;
+    public convocationCps = 47;
 
     private effect: UpgradeEffect
 
