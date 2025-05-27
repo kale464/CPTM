@@ -32,8 +32,8 @@ export default function GameProvider({ children }: GameProviderProps ) {
   
     useEffect(() => {
       const interval = setInterval(() => {
-        setCookies(prev => prev + autoCookies);
-      }, 1000);
+        setCookies(prev => prev + autoCookies / 1000);
+      }, 1);
       return () => clearInterval(interval);
     }, [autoCookies]);
   
